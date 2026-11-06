@@ -15,14 +15,15 @@ async def main() -> None:
     client = await Client.connect("localhost:7233")
 
     await client.create_schedule(
-        "reconcile-hourly",
+        "reconcile-minute",
         Schedule(
             action=ScheduleActionStartWorkflow(
                 Reconcile.run,
                 task_queue="email",
+                id="reconcile-minute-2",
             ),
             spec=ScheduleSpec(
-                intervals=[ScheduleIntervalSpec(every=timedelta(minutes=1))],
+                intervals=[ScheduleIntervalSpec(every=timedelta(minutes=2))],
             ),
         ),
     )

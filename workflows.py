@@ -1,10 +1,12 @@
 from datetime import timedelta
+from time import sleep
 
 from temporalio import activity, workflow
 
 
 @activity.defn
 async def send_email(address: str) -> None:
+    sleep(1)
     print(f"письмо на {address}: подтверди адрес")
 
 
